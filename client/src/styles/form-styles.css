@@ -1,0 +1,57 @@
+/* === Estilos para los formularios === */
+/* Se comparten los estilos para los componentes Create y Update */
+
+/* Contenedor del formulario */
+.form {
+  width: 100%;
+  margin: auto;
+  box-sizing: border-box;
+  background: var(--second-color);
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.form h1 {
+  margin-bottom: 20px;
+}
+
+/* Estilos para los campos de texto en el formulario */
+.form input {
+  width: 100%;
+  margin-bottom: 16px;
+  height: 36px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  padding: 0px 12px;
+  background-color: var(--primary-color);
+  color: var(--font-color);
+  font-size: 1rem;
+  font-family: "Domine", serif;
+}
+
+/* Ajuste especial para el botón de tipo "submit" */
+.form input[type=submit] {
+  margin-bottom: 0px;
+  height: 32px;
+  border: none;
+}
+
+/* Estilos para la imagen del formulario */ 
+.form img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 1px;
+}
+
+/* === Media Querys === */
+@media (min-width: 768px) {
+
+  /* Aumentamos para un mejor aprovechamiento del espacio */
+  .form {
+    padding: 40px;
+  }
+  
+}

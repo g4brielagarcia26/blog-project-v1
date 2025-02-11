@@ -1,0 +1,82 @@
+/* === Barra de buscador === */
+/* Estilo general para el contenedor del buscador */
+.search {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+/* Estilo para el formulario del buscador */
+.search form { 
+  width: 100%;
+  display: flex;
+  border-radius: 20px;
+}
+
+/* Estilo para el campo de entrada del buscador */
+.search input {
+  width: 90%;
+  height: 32px;
+  padding: 10px 6px 10px 0;
+  color: var(--input-color);
+  font-size: 1rem;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 0px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 0px;
+  background: var(--second-color);
+  border: 1px solid transparent; /* Borde invisible inicial para prevenir desajustes */
+  outline: none; /* Elimina el borde predeterminado del navegador */
+  transition: border 0.3s ease; /* Transición suave para el foco */
+}
+
+/* Estilo para el botón del buscador */
+.search button {
+  width: 10%;
+  height: 32px;
+  background: var(--second-color);
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--font-color);
+  cursor: pointer;
+}
+
+/* Cuando el formulario tiene foco en alguno de sus campos */
+.search form:focus-within {
+  border: 2px solid var(--highlight-color); /* Borde visible en estado de foco */
+}
+
+/* Estilo para el texto cuando no hay ninguna búsqueda */
+/* Está dentro del componente Search, se define aquí por generlizar estilos */
+.search-false {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.search-false strong {
+  color: var(--highlight-color);
+}
+
+/*  === Ajustes para pantallas ancho mínimo de 768px === */
+@media (min-width: 768px) {
+
+  .search form {
+    width: 80%;
+    margin: auto;
+  }
+}
+
+/*  === Ajustes para pantallas ancho mínimo de 1024px === */
+@media (min-width: 1024px) {
+
+  .search form {
+    width: 60%;
+  }
+}

@@ -1,0 +1,37 @@
+.editor {
+  
+}
+
+.menu-bar {
+  background: var(--primary-color);
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.tiptap {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background: var(--primary-color);
+  height: 200px;
+  padding: 20px;
+  outline: none;
+  font-size: 0.8rem;
+}
+
+.tiptap ul, .tiptap ol {
+  padding-left: 40px;
+}
+
+.menu-bar .btn {
+  background: var(--second-color);
+}
+
+.btn.is-active {
+  color: var(--highlight-color); 
+  border: 2px solid var(--highlight-color); 
+}

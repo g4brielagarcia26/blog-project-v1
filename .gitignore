@@ -1,0 +1,22 @@
+# Ignorar archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar dependencias de Node.js en cada carpeta
+client/node_modules/
+server/node_modules/
+
+# Ignorar archivos de entorno
+client/.env
+server/.env
+
+# Ignorar logs
+client/logs/
+server/logs/
+*.log
+
+# Ignorar builds y directorios de salida
+client/dist/
+server/dist/
+client/build/
+server/build/

@@ -1,0 +1,152 @@
+/* === Layout principal Mobile First === */
+
+/* === Grid === */
+/* Configuración de la rejilla para el layout general */
+.layout {
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-areas:
+    "header header header header"
+    "nav nav nav nav"
+    "content content content content"
+    "footer footer footer footer";
+  grid-template-rows: 50px 50px 1fr 100px;
+  grid-template-columns: 1fr;
+}
+
+/* === Header === */
+/* Estilo para el encabezado principal */
+.header {
+  grid-area: header;
+  position: relative; 
+  padding: 0px 20px;
+  background-color: var(--second-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header h1 {
+  font-size: 16px;
+}
+
+/* Estilo para el logo */
+.logo {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.logo:hover{
+  color: var(--highlight-color);
+}
+
+/* === Nav === */
+/* Barra de navegación principal */
+.nav {
+  grid-area: nav;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--second-color);
+}
+
+/* Lista de enlaces dentro del nav */
+.nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+/* Enlaces de navegación */
+.nav a {
+  position: relative;
+  display: inline-block;
+  padding: 0 16px;
+  font-weight: bold;
+  color: var(--font-color);
+}
+
+/* Cambio de color en hover */
+.nav a:hover {
+  color: var(--highlight-color); 
+}
+
+/* Pseudo-elemento para la animación del subrayado */
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%; 
+  bottom: -4px; 
+  width: 0;
+  height: 2px;
+  background: var(--highlight-color);
+  transition: width 0.3s ease, transform 0.3s ease; 
+  transform: translateX(-50%);
+}
+
+/* Animación del subrayado en hover */
+.nav a:hover::after {
+  width: 60%; 
+  transform: translateX(-50%);
+}
+
+/* === Content === */
+/* Estilo para la sección principal del contenido */
+.content {
+  grid-area: content;
+  width: 90%;
+  margin: auto;
+  padding: 40px 0;
+}
+
+.content h2 {
+  text-align: center;
+}
+
+/* === Footer === */
+/* Pie de página */
+.footer {
+  grid-area: footer;
+  background-color: var(--second-color);
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+}
+
+/* === Media Querys === */
+/* Estilos para pantallas medianas */
+@media (min-width: 768px) {
+
+  .header {
+    padding: 0px 40px;
+  }
+
+}
+
+/* Estilos para pantallas grandes */
+@media (min-width: 1024px) {
+
+  .header h1 {
+    font-size: 24px;
+  }
+
+  .theme-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .content {
+    width: 50%;
+  }
+
+  .nav a {
+    padding: 0 32px;
+    font-size: 18px;
+  }
+
+}

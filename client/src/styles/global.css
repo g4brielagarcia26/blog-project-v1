@@ -1,0 +1,58 @@
+/* === Estilos globales === */
+
+/* === Temas === */
+.light-theme {
+/* Fondos principales */
+--primary-color: #f5f5f5;  
+--second-color: #e5e5e5;    
+
+/* Textos */
+--font-color: #212121;
+--input-color: #333333;
+
+/* Color de resalto */
+--highlight-color: #4f46e5;
+
+/* Estados */
+--hover-color: #d4d4d4;     
+--error-color: #ef4444;   
+--success-color: #22c55e;
+}
+
+.dark-theme {
+/* Fondos principales */
+--primary-color: #212121;
+--second-color: #333333;
+
+/* Textos */
+--font-color: #ebebeb;
+--input-color: #b8b8b8;
+
+/* Color de resalto */
+--highlight-color: #818cf8;
+
+/* Estados */
+--hover-color: #474747;
+--error-color: #ef4444;
+--success-color: #22c55e;
+}
+
+/* === Estilos globales === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* === Estilos del body === */
+body {
+  background-color: var(--primary-color);
+  color: var(--font-color);
+  font-family: "Domine", serif;
+}
+
+/* === Estilos enlaces === */
+a {
+  text-decoration: none;
+  color: var(--font-color);
+}

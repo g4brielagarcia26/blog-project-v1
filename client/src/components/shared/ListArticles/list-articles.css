@@ -1,0 +1,143 @@
+
+/* === Listado de Articulos === */
+/* Estilo principal para cada artículo en la lista */
+.articles-list {
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+  min-height: 200px;
+  background-color: var(--second-color);
+  border-radius: 10px;
+  margin-bottom: 40px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Eliminamos el margen inferior del último artículo */
+.articles-list:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Animación básica hover para los artículos */
+.articles-list:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para las imágenes dentro de los artículos */
+.articles-list img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+/* Contenedor para el contenido del artículo */
+.articles-content {
+  padding: 20px;
+  
+}
+
+/* Estilo para el título de cada artículo */
+.title {
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+/* Estilo para los párrafos dentro del contenido del artículo */
+.articles-content p {
+  color: var(--input-color);
+  font-size: 0.8rem;
+}
+
+/* Contenedor de los botones dentro de los artículos */
+.articles-btn {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Estilo general para los botones */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  font-family: "Domine", serif;
+  color: var(--font-color);
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: var(--primary-color);
+  user-select: none;
+}
+
+/* Hover en el botón de actualizar */
+.btn-update:hover {
+  border: 2px solid var(--highlight-color);
+  color: var(--highlight-color);
+}
+
+/* Hover en el botón de eliminar */
+.btn-delete:hover {
+  border: 2px solid var(--error-color);
+  color: var(--error-color);
+}
+
+/* === Barra de paginación === */
+/* Estilo para la barra de paginación */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0px;
+  gap: 10px;
+}
+
+/* Estilo específico para los botones de paginación */
+.pagination .btn {
+  background-color: var(--second-color);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+/* Hover en botones de paginación */
+.pagination .btn:hover{
+  border: 2px solid var(--highlight-color);
+  color: var(--highlight-color);
+}
+
+/* Estilo para el botón de la página activa */
+.pagination .btn.active {
+  background-color: var(--highlight-color);
+  color: #fff;
+  border: 2px solid var(--highlight-color);
+}
+
+/* === Modificaciones para las animaciones === */
+/* Desactivar transiciones en los artículos cuando un modal está abierto */
+body.modal-open .articles-list {
+  transition: none; /* Sin animación */
+  pointer-events: none; /* No permite interacciones */
+}
+
+/* Sin efecto hover / sombras cuando el modal está abierto */
+body.modal-open .articles-list:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/*  === Ajustes para pantallas ancho mínimo de 768px === */
+@media (min-width: 768px) {
+
+  /* Texto justificado en pantallas > 768px */
+  .articles-content {
+    text-align: justify;
+  }
+
+}

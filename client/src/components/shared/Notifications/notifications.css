@@ -1,0 +1,43 @@
+/* 
+  === Notificaciones ===
+  .notifications    contenedor general de notificaciones.
+  .notification     define el estilo general para las notificaciones de éxito o error.
+  .success          estilos para indicar acciones exitosas.
+  .error            estilos para indicar errores.
+*/
+.notifications {
+  width: 100%;
+}
+
+.notification {
+  width: 90%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: 4px;
+  font-size: 16px;
+  margin: auto;
+}
+
+.notification.success {
+  color: var(--success-color);
+  border: 1px solid var(--success-color);
+  background-color: #22c55e10;
+}
+
+.notification.error {
+  border: 1px solid var(--error-color);
+  color: var(--error-color);
+  background-color: #ef444412;
+}
+
+/*  === Ajustes para pantallas ancho mínimo de 768px === */
+@media (min-width: 768px) {
+
+  .notification {
+    width: 60%;
+  }
+  
+}

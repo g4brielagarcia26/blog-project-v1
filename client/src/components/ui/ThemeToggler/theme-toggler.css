@@ -1,0 +1,24 @@
+/* 
+  === Botón de tema ===
+  .theme-btn    se encarga de mostrar el icono para alternar entre los temas.
+*/
+.theme-btn {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  color: var(--font-color);
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ajuste del contenedor interno con el mismo tamaño del SVG */
+.theme-btn div {
+  height: 20px;
+}

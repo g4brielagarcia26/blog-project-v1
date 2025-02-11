@@ -1,0 +1,60 @@
+/* === Home Page === */
+/* Título principal de la página */
+.blog-home h1 { 
+  font-size: 30px;
+  padding: 20px 0;
+  text-align: center;
+}
+
+/* Contenedor de los artículos destacados */
+.blog-featured {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+/* Tarjeta individual del artículo del Home */
+.article-card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  padding: 20px;
+  overflow: hidden;
+  background-color: var(--second-color);
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+/* Imagen dentro de la tarjeta del artículo */
+.article-card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Efecto al pasar el ratón sobre una tarjeta */
+.article-card:hover {
+  border: 1px solid var(--highlight-color);
+  transform: scale(1.05);
+}
+
+/* Estilo del texto dentro de las tarjetas */
+.article-data h3, p {
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+}
+
+/* Contenedor del texto en las tarjetas */
+.article-data {
+  padding: 10px 10px 10px 20px;
+}
+
+/* Espaciado específico para párrafos dentro de la tarjeta */
+.article-data p {
+  margin: 10px 10px 10px 0px;
+}
