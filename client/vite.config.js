@@ -7,4 +7,5 @@ export default defineConfig({
     svgr(), 
     react()
   ],
+  base: "/",
 });
