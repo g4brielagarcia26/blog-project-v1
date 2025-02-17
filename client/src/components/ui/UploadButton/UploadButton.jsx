@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./upload-button.css";
 
 /*
   Este componente se encarga de renderizar un botón para subir imágenes.
   Permite al usuario seleccionar un archivo y muestra el nombre del archivo si ha sido seleccionado.
 */
-export const UploadButton = () => {
+export const UploadButton = ({ resetTrigger }) => {
 
   // "isFileClicked" nos ayuda a saber si el usuario ha hecho clic en el input de archivo.
   const [isFileClicked, setIsFileClicked] = useState(false);
@@ -20,6 +20,11 @@ export const UploadButton = () => {
     setFileName(file ? file.name : "");
     setIsFileClicked(true);
   };
+
+  useEffect(() => {
+    setIsFileClicked(false);
+    setFileName("");
+  }, [resetTrigger]);
 
   return (
     <div>

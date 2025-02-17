@@ -7,7 +7,24 @@ const router = Router();
 
 // Configuración de Multer para almacenar en memoria (Firebase Storage no necesita disco local)
 const storage = multer.memoryStorage();
-const uploads = multer({ storage: storage});
+
+// Función para filtrar archivos: solo acepta imágenes
+const fileFilter = (req, file, cb) => {
+  // Verifica que el mimetype empiece por 'image/'
+  if (file.mimetype.startsWith('image/')) {
+    cb(null, true);
+  } else {
+    // Si no es una imagen, rechaza el archivo
+    cb(new Error('Solo se permiten archivos de imagen'), false);
+  }
+};
+
+// Configurar Multer con límite de 5MB y el filtro de archivos
+const upload = multer({
+  storage,
+  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB
+  fileFilter
+});
 
 /**
  * @route POST /crear
@@ -43,7 +60,7 @@ router.put("/articulo/:id", updateArticle);
  * @route GET /image/:file
  * @description Devuelve una imagen específica almacenada en el servidor.
  */
-router.post("/upload-image/:id", uploads.single('file'), uploadImage);
+router.post("/upload-image/:id", upload.single('file'), uploadImage);
 
 /**
  * @route GET /image/:file
@@ -56,6 +73,22 @@ router.get("/image/:file", showImage);
  * @description Busca artículos que coincidan con el término proporcionado.
  */
 router.get("/search/:string", search);
+
+// Middleware para manejo de errores (se coloca al final)
+router.use((err, req, res, next) => {
+  if (err instanceof multer.MulterError) {
+    return res.status(400).json({
+      status: "error",
+      message: err.message,
+    });
+  } else if (err) {
+    return res.status(400).json({
+      status: "error",
+      message: err.message,
+    });
+  }
+  next();
+});
 
 // Exportación del enrutador para su uso en la aplicación principal
 export default router;

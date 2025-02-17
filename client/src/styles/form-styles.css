@@ -9,18 +9,14 @@
   background: var(--second-color);
   padding: 20px;
   border-radius: 10px;
-  margin: 20px 0;
-}
-
-.form h1 {
-  margin-bottom: 20px;
+  margin: 20px 0px;
 }
 
 /* Estilos para los campos de texto en el formulario */
 .form input {
   width: 100%;
-  margin-bottom: 16px;
   height: 36px;
+  margin: 20px 0px;
   border-radius: 10px;
   border: none;
   outline: none;
@@ -44,6 +40,8 @@
   height: 200px;
   object-fit: cover;
   border-radius: 1px;
+  margin-top: 20px;
+  border-radius: 10px;
 }
 
 /* === Media Querys === */

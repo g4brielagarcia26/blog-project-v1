@@ -137,6 +137,14 @@ export const Update = () => {
               onChange={(contentJSON) => setContent(contentJSON)}
             />
           </div>
+
+          {/* Campo de entrada para el autor del artículo */}
+          <input
+            type="text"
+            name="writer"
+            onChange={handleChange}
+            defaultValue={article.writer ? article.writer : "Anonymous"}
+          ></input>
           
           {/* Botón para subir una imagen */}
           <UploadButton />

@@ -22,7 +22,7 @@ export const TipTapEditor = ({ onChange, defaultValue }) => {
       const currentJSON = editor.getJSON()
       onChange(JSON.stringify(currentJSON))
     },
-  })
+  });
 
   useEffect(() => {
     if (!editor) return

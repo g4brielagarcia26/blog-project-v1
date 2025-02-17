@@ -8,13 +8,13 @@ export const Nav = () => {
       {/* Enlaces para la página de inicio */}
       <ul>
         <li>
-          <NavLink to="/home">inicio</NavLink>
+          <NavLink to="/home">Inicio</NavLink>
         </li>
         <li>
-          <NavLink to="/articles">artículos</NavLink>
+          <NavLink to="/articles">Artículos</NavLink>
         </li>
         <li>
-          <NavLink to="/create-article">crear</NavLink>
+          <NavLink to="/create-article">Crear</NavLink>
         </li>
       </ul>
     </nav>

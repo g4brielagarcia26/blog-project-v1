@@ -2,6 +2,7 @@ import articleValidator from "../helpers/validators.js"; // Importamos los valid
 import Articles from "../models/Articles.js";
 import { bucket } from "../firebase-config.js";
 
+
 // Crea un nuevo artículo en la base de datos.
 /**
  * @returns {Promise<void>} Responde con un objeto JSON que indica el éxito o fallo de la operación.
@@ -265,29 +266,6 @@ export const uploadImage = async (req, res) => {
       message: "No se ha incluido ningún archivo."
     });
   }
-
-  /* 
-  let fileName = req.file.originalname; // Nombre original del archivo subido.
-  let file_split = fileName.split(".");  // Divide el nombre del archivo en un array `["imagen", "jpg"];`
-  let file_extension = file_split[1].toLowerCase(); // Toma la segunda parte del array y lo convierte a minúsculas
-
-  // Comprobar extensión
-  if (!["png", "jpg", "jpeg", "gif"].includes(file_extension)) {
-    // Intentar borrar archivo pasandole el PATH
-    try {
-      await fs.unlink(req.file.path);
-      return res.status(400).json({
-        status: "error",
-        message: "Imagen inválida"
-      });
-    } catch (error) {
-      return res.status(500).json({
-        status: "error",
-        message: "Error al manejar la imagen inválida.",
-      });
-    }
-  }
-    */
 
   const articleId = req.params.id;
   const file = req.file;

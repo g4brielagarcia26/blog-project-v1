@@ -18,7 +18,7 @@ export const Header = () => {
       >
         <Logo />
         {/* Título del blog */}
-        <h1>blog</h1>
+        <h1>Hello Blog</h1>
       </div>
 
       {/* Botón para alternar el tema */}

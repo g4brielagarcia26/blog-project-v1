@@ -19,6 +19,11 @@ const ArticleSchema = new Schema(
       type: Date,
       default: Date.now
     },
+    /* Autor del artículo */ 
+    writer: {
+      type: String,
+      required: true
+    },
     /* Imagen asociada al artículo, si no se provee se utiliza "default.png". */
     image: {
       type: String,

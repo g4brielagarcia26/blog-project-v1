@@ -10,7 +10,7 @@ import defaultImage from "/src/assets/images/default-image.png";
 export const Article = () => {
 
   const [article, setArticle] = useState({}); // Estado para almacenar los datos del artículo actual
-  
+
   // Hook para obtener los parámetros de la URL (como el ID del artículo)
   const params = useParams();
 
@@ -48,8 +48,19 @@ export const Article = () => {
             __html: convertToHtml(article.content), // Convierte el contenido a HTML seguro
           }}
         ></div>
-        {/* Fecha y autor del artículo */}
-        <span>Realizado el {new Date(article.date).toLocaleDateString()} por Chat GPT 4o Mini</span>
+        {/* Autor del artículo */}
+        <span>{article.writer ? article.writer : "Anonymous"}</span>
+
+        {/* Fecha del artículo */}
+        <span>
+          {new Date(article.date).toLocaleString('es-ES', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+          })}
+        </span>
       </div>
     </div>
   );
