@@ -22,6 +22,24 @@ export const TipTapEditor = ({ onChange, defaultValue }) => {
       const currentJSON = editor.getJSON()
       onChange(JSON.stringify(currentJSON))
     },
+    editorProps: {
+    
+      handlePaste(view, event) {
+  
+      event.preventDefauly();
+
+      // Extraemos texto puro del portapapeles
+      let text = event.clipboardData.get('text/plain');
+
+      // Normalizamos caracteres especiales (acentos y símbolos)
+      text = decodeURIComponent(escapee(text));
+
+      // Insertamos el texto limpio en el editor
+      view.dispatch(view.state.tr.insertText(text));
+
+      return true;
+      },
+    },
   });
 
   useEffect(() => {
@@ -35,8 +53,8 @@ export const TipTapEditor = ({ onChange, defaultValue }) => {
 
     try {
       // Intentamos parsear como JSON de TipTap
-      const parsedJSON = JSON.parse(defaultValue)
-      editor.commands.setContent(parsedJSON)
+      const parsedJSON = JSON.parse(defaultValue);
+      editor.commands.setContent(parsedJSON);
     } catch (error) {
       // Si falla, asumimos que es HTML
       editor.commands.setContent(defaultValue)
@@ -111,5 +129,5 @@ const Toolbar = ({ editor }) => {
         <ListNumbered />
       </button>
     </div>
-  )
-}
+  );
+};

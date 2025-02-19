@@ -272,6 +272,33 @@ export const uploadImage = async (req, res) => {
   const fileName = `article_${Date.now()}_${file.originalname}`;
 
   try {
+    // Buscar el artículo correspondiente para obtener la imagen actual.
+    const article = await Articles.findById(articleId);
+
+    // Sí el artículo no existe
+    if(!article) {
+      return res.status(404).json({
+        status: "error",
+        message: "Artículo no encontrado."
+      });
+    }
+
+    // Verifica si hay una imagen anterior y la eliminarla si no es la imagen por defecto
+    if(article.image && article.image !== "default.png") {
+
+      const previousImageRef = bucket.file(`articles/${article.image}`);
+
+      try {
+        await previousImageRef.delete();
+      } catch (error) {
+        console.error("Error al eliminar la imagen anterior de Firebase: ", error);
+        return res.status(500).json({
+          status: "error",
+          message: "Error al eliminar la imagen anterior.",
+        });
+      }
+    }
+
     // Obtén la referencia del archivo en el bucket
     const fileRef = bucket.file(`articles/${fileName}`);
 

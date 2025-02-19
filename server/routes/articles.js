@@ -15,6 +15,7 @@ const fileFilter = (req, file, cb) => {
     cb(null, true);
   } else {
     // Si no es una imagen, rechaza el archivo
+    console.error("Archivo rechazado:", file.mimetype);
     cb(new Error('Solo se permiten archivos de imagen'), false);
   }
 };
@@ -76,6 +77,7 @@ router.get("/search/:string", search);
 
 // Middleware para manejo de errores (se coloca al final)
 router.use((err, req, res, next) => {
+  console.error("Middleware de error:", err.message);
   if (err instanceof multer.MulterError) {
     return res.status(400).json({
       status: "error",

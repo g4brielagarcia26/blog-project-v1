@@ -21,6 +21,8 @@
 .article p {
   margin: 20px 0;
   text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
 }
 
 /* Estilo para el texto adicional (como fecha o autor) */

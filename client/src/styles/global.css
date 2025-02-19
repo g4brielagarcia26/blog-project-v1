@@ -60,3 +60,12 @@ a {
 ul, ol {
   padding-left: 20px;
 }
+
+/* === Estilos de los toast === */
+/* Sobrescribe el color de los toasts de error */
+.Toastify__toast {
+  background: var(--second-color);
+  color: var(--font-color);
+}
+
+
