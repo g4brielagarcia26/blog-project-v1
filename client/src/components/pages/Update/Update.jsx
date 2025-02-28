@@ -13,9 +13,8 @@ import "../../../styles/form-styles.css";
 export const Update = () => {
 
   const [article, setArticle] = useState({}); // Estado para almacenar los datos del artículo
-  const [content, setContent] = useState(""); // Estado para manejar el contenido del editor de texto
-
-  const { form, setForm, handleChange } = useForm(article); // Hook para manejar el formulario
+  
+  const { form, setForm, handleChange, handleSubmit } = useForm(article); // Hook para manejar el formulario
   const params = useParams(); // Hook para obtener parámetros de la URL (ID del artículo)
 
   // useEffect para cargar los datos del artículo.
@@ -41,15 +40,14 @@ export const Update = () => {
   };
 
   // Función para enviar los datos actualizados del artículo.
-  const updateArticle = async (e) => {
-
-    e.preventDefault();
+  const updateArticle = async ( formData ) => {
 
     // Crea un nuevo objeto con los datos actualizados del artículo.
     let newArticle = {
       ...article, // (...) mantiene las propiedades del artículo
       title: form.title || article.title,
-      content: content || article.content,
+      content: form.content || article.content,
+      writer: form.writer || article.writer
     };
 
     try {
@@ -79,7 +77,7 @@ export const Update = () => {
         // Realizamos la solicitud de subida de imagen a la API
         try {
           const uploadImage = await ajaxRequest(
-            `${Global.url}upload-image/${data.updatedArticle._id}`,
+            `${Global.url}nueva-imagen/${data.updatedArticle._id}`,
             "POST",
             formData,
             true // Indica que es multipart/form-data
@@ -103,7 +101,7 @@ export const Update = () => {
   return (
     <div>
       {/* Formulario para editar el artículo */}
-      <form className="form" onSubmit={updateArticle}>
+      <form className="form" onSubmit={(e) => handleSubmit(e, updateArticle)}>
 
         <h1>Editar un artículo</h1>
 
@@ -128,16 +126,22 @@ export const Update = () => {
           <div className="editor">
             <TipTapEditor
               defaultValue={article.content}
-              onChange={(contentJSON) => setContent(contentJSON)}
+              onChange={(contentJSON) =>
+                setForm((prev) => ({ ...prev, content: contentJSON }))
+              }
             />
           </div>
 
+          {/* input oculto para que serializeForm lo recoja */}
+          <input type="hidden" name="content" value={form.content || ""} />
+
           {/* Campo de entrada para el autor del artículo */}
+          
           <input
             type="text"
             name="writer"
             onChange={handleChange}
-            defaultValue={article.writer ? article.writer : "Anonymous"}
+            defaultValue={article.writer}
           ></input>
 
           {/* Componente para subir una imagen */}

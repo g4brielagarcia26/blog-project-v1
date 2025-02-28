@@ -28,14 +28,14 @@ export const UploadButton = ({ resetTrigger }) => {
     // Valida tipo de archivo (solo permite imágenes)
     if (!file.type.startsWith("image/")) {
       setFileName("");
-      toast.error("El archivo seleccionado no es una imagen válida.");
+      toast.error("El archivo seleccionado no es una imagen válida");
       return;
     }
 
     // Valida tamaño de archivo (no más de 5MG)
     if (file.size > MAX_FILE_SIZE) {
       setFileName("");
-      toast.error("El archivo supera el límite máximo de 5MB.");
+      toast.error("El archivo supera el límite máximo de 5MB");
       return
     }
 

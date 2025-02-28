@@ -25,15 +25,23 @@
   hyphens: auto;
 }
 
-/* Estilo para el texto adicional (como fecha o autor) */
-.article span {
-  display: block;
-  text-align: right;
-  font-style: italic;
-  color: var(--input-color);
+/* Estilo para las listas ordenadas y desordenadas */
+.article ul p,
+.article ol p {
+  margin: 5px 0;
 }
 
 /* Contenido del artículo */
 .article-content {
   padding: 0 30px 30px 30px; /* Añade relleno alrededor del contenido */
+}
+
+/* Estilo para el texto adicional (como fecha o autor) */
+.writer-box {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-style: italic;
+  color: var(--input-color);
+  margin: 30px 0px 20px 0px;
 }

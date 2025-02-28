@@ -31,7 +31,7 @@ const upload = multer({
  * @route POST /crear
  * @description Crea un nuevo artículo.
  */
-router.post("/crear", createArticles);
+router.post("/nuevo-articulo", createArticles);
 
 /**
  * @route GET /articulos/:ultimos?
@@ -61,7 +61,7 @@ router.put("/articulo/:id", updateArticle);
  * @route GET /image/:file
  * @description Devuelve una imagen específica almacenada en el servidor.
  */
-router.post("/upload-image/:id", upload.single('file'), uploadImage);
+router.post("/nueva-imagen/:id", upload.single('file'), uploadImage);
 
 /**
  * @route GET /image/:file

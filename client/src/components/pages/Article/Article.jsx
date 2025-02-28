@@ -48,19 +48,22 @@ export const Article = () => {
             __html: convertToHtml(article.content), // Convierte el contenido a HTML seguro
           }}
         ></div>
+        
+
+        <div className="writer-box">
         {/* Autor del artículo */}
-        <span>{article.writer ? article.writer : "Anonymous"}</span>
+        <span>{`Escrito por ${article.writer}`}</span>
 
         {/* Fecha del artículo */}
         <span>
-          {new Date(article.date).toLocaleString('es-ES', {
+          Creado el {new Date(article.date).toLocaleString('es-ES', {
             year: 'numeric',
             month: 'long',
             day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
           })}
         </span>
+        </div>
+
       </div>
     </div>
   );

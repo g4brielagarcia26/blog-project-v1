@@ -12,24 +12,18 @@ import 'react-toastify/dist/ReactToastify.css';
 export const Create = () => {
 
   // Hook interno para manejar el envio del formulario.
-  const { form, handleChange, setForm } = useForm({ title: "", writer: "" }); 
-
-  const [content, setContent] = useState(""); // Estado para manejar el contenido del editor de texto.
+  
+  const { form, handleChange, setForm, handleSubmit } = useForm({ title: "", content: "", writer: "" });  const [content, setContent] = useState(""); // Estado para manejar el contenido del editor de texto.
   const [resetTrigger, setResetTrigger] = useState(0); // Triggers para reiniciar el componente "UpdateImage".
 
   // Función que maneja las solicitudes hacia la API.
-  const saveArticle = async (e) => {
-
-    e.preventDefault();
-  
-    // Crea el objeto con los datos del formulario y el contenido.
-    const newArticle = { ...form, content };
+  const saveArticle = async ( formData ) => {
   
     try {
       // Envia el artículo (texto) a la API para crearlo
-      const { data } = await ajaxRequest(`${Global.url}crear`, "POST", newArticle);
+      const { data } = await ajaxRequest(`${Global.url}nuevo-articulo`, "POST", formData);
   
-      // Si la respuesta no es válida muestra error a través de un "toast".
+      // Validamos que la respuesta del server sea "success"
       if (!data || data.status !== "success") {
         toast.error("Faltan datos para crear el artículo");
         return;
@@ -54,7 +48,7 @@ export const Create = () => {
         // Realizamos la solicitud de subida de imagen a la API
         try {
           await ajaxRequest(
-            `${Global.url}upload-image/${data.article._id}`,
+            `${Global.url}nueva-imagen/${data.article._id}`,
             "POST",
             formData, 
             true // Indica que es multipart/form-data
@@ -77,10 +71,7 @@ export const Create = () => {
   const resetForm = () => {
 
     // Reiniciar valores del formulario
-    setForm({ title: "", writer: "" }); 
-
-    // Limpiar editor de texto
-    setContent(""); 
+    setForm({ title: "", writer: "", content: "" });
 
     // Borra el input de archivo
     document.getElementById("file").value = "";
@@ -92,7 +83,7 @@ export const Create = () => {
   return (
     <div>
       {/* Formulario para crear el artículo */}
-      <form className="form" onSubmit={saveArticle}>
+      <form className="form" onSubmit={(e) => handleSubmit(e, saveArticle)}>
 
         <h1>Crear un artículo</h1>
 
@@ -109,10 +100,20 @@ export const Create = () => {
           {/* Editor de texto para el contenido del artículo */}
           <div className="editor">
             <TipTapEditor
-              key={resetTrigger} 
-              onChange={(contentJSON) => setContent(contentJSON)}
+              key={resetTrigger}
+              onChange={(contentJSON) =>
+                // Actualizamos el state de useForm en tiempo real
+                setForm((prev) => ({ ...prev, content: contentJSON }))
+              }
             />
           </div>
+
+          {/* Campo oculto para que serializeForm recoja el 'content' */}
+          <input
+            type="hidden"
+            name="content"
+            value={form.content || ""}
+          />
 
           <input
             type="text"

@@ -1,5 +1,7 @@
 // Custom Hook para manejar formularios
 import { useState } from "react";
+import { isTiptapJsonEmpty } from "../helpers/isTipTapJsonEmpty";
+import { toast } from "react-toastify";
 
 // El hook acepta un parámetro opcional 'objetoInicial' que por defecto es un objeto vacio.
 export const useForm = (initialObject = {}) => {
@@ -27,7 +29,7 @@ export const useForm = (initialObject = {}) => {
   }
 
   // Maneja la acción de enviar el formulario.
-  const handleSubmit = (e) => {
+  const handleSubmit = (e, onSuccess) => {
 
     // Prevenimos el comportamiento por defecto.
     e.preventDefault();
@@ -35,9 +37,52 @@ export const useForm = (initialObject = {}) => {
     /// Obtenemos la información convertida a objeto usando serializeForm.
     let serializedData = serializeForm(e.target);
 
-    // Actualizamos el estado con los datos del formulario.
+     // 1) Validaciones para el titulo
+     if (!serializedData.title) {
+      toast.error("El título está vacío");
+      return;
+    }
+
+    if (serializedData.title.trim().length < 5) {
+      toast.error("El título es muy corto");
+      return;
+    }
+
+    if (serializedData.title.trim().length > 60) {
+      toast.error("El título es demasiado largo");
+      return;
+    }
+
+    // 2) Contenido de Tiptap vacío (si 'content' contiene el JSON de Tiptap)
+    if (isTiptapJsonEmpty(serializedData.content)) {
+      toast.error("El contenido está vacío");
+      return;
+    }
+
+    // 3) Validaciones para el autor
+    if (!serializedData.writer) {
+      toast.error("El autor está vacío");
+      return;
+    }
+
+    if (serializedData.writer.trim().length < 5) {
+      toast.error("El nombre del autor es muy corto");
+      return;
+    }
+
+    if (serializedData.writer.trim().length > 25) {
+      toast.error("El nombre del autor es demasiado largo");
+      return;
+    }
+    
+    // Actualiza el estado con los datos
     setForm(serializedData);
-  }
+
+    if (typeof onSuccess === "function") {
+      onSuccess(serializedData);
+    }
+
+  };
   
   // Maneja los cambios en los inputs del formulario.
   const handleChange = ({ target }) => {
